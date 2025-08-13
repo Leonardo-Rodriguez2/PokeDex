@@ -11,11 +11,17 @@ export class PokemonsListService {
 
   constructor(private http: HttpClient) { }
 
-  listPokemons(): Observable<any> {
-    return this.http.get('https://pokeapi.co/api/v2/pokemon?limit=15');
+  listPokemons(limit:number): Observable<any> {
+    // Aumentamos el límite para obtener más Pokémon
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
   }
 
   getPokemonDetails(url: string): Observable<any> {
+    return this.http.get(url);
+  }
+
+  // Nuevo método para obtener detalles de la especie del Pokémon
+  getPokemonSpecies(url: string): Observable<any> {
     return this.http.get(url);
   }
 }

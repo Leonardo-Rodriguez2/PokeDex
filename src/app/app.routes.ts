@@ -4,8 +4,8 @@ import { PokemonsPageComponent } from './pages/pokemons.page/pokemons.page.compo
 import { AboutPageComponent } from './pages/about.page/about.page.component';
 
 export const routes: Routes = [
-    { path: 'Home', component: HomePageComponent, title: ' Inicio ' },
-    { path: 'Pokemones', component: PokemonsPageComponent, title: ' Pokemones ' },
-    { path: 'Acerca de mi', component: AboutPageComponent, title: ' Acerca de mi ' },
+    { path: 'home', component: HomePageComponent, title: ' Inicio ' },
+    { path: 'pokemons', component: PokemonsPageComponent, title: ' Pokemones ' },
+    { path: 'about', component: AboutPageComponent, title: ' Acerca de mi ' },
     { path: '**', component: HomePageComponent, title: ' 404 ' }
 ];
