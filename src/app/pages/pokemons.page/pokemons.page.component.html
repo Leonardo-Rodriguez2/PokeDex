@@ -1,43 +1,33 @@
-<div class="bg-pattern p-4 min-h-screen flex items-center justify-center flex-col">
-    
-    <div class="container mx-auto max-w-7xl">
+<div
+  class="bg-pattern p-4 min-h-screen flex items-center justify-center flex-col"
+>
+  <div class="container mx-auto max-w-7xl">
+    <!-- Barra de filtros de navegacion -->
+    <app-search-filter-bar></app-search-filter-bar>
 
-        <!-- Barra de filtros de navegacion -->
-         <app-search-filter-bar></app-search-filter-bar>
-
-
-        <!-- tarjetas de los pokemones -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-            @for (pokemon of pokemons; track pokemon.name) {
-                <div (click)="openModal(pokemon)" class="hover:cursor-pointer bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
-                    <img src="{{pokemon.image}}" alt="Pokémon Placeholder" class="w-24 h-24 mb-4">
-                    <div class="w-full text-left">
-                        <h2 class="text-lg font-bold text-gray-800 mt-1">{{pokemon.name}}</h2>
-                        <div class="flex gap-2 mt-2">
-                             <span class="px-3 py-1 rounded-full text-white text-xs font-semibold bg-gray-400">{{pokemon.type}}</span>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
+    <!-- tarjetas de los pokemones -->
+    <app-pokemon-card [pokemons]="pokemons" (cardClicked)="openModal($event)">
+    </app-pokemon-card>
 
     <!-- botton para mostrar mas pokemones -->
 
-<div (click)="showMorePokemons()" class="flex justify-center items-center gap-2 my-8 hover:cursor-pointer hover:text-blue-600 transition-colors duration-300">
+    <div
+      (click)="showMorePokemons()"
+      class="flex justify-center items-center gap-2 my-8 hover:cursor-pointer hover:text-blue-600 transition-colors duration-300"
+    >
       <p class="cursor-pointer">Mostrar mas</p>
+    </div>
+
+    <!-- Modal de detalles de los pokemones -->
+
+    <app-pokemon-details-modal
+      [pokemon]="selectedPokemon"
+      [pokemonDetails]="selectedPokemonDetails"
+      [isModalOpen]="isModalOpen"
+      (closeModal)="closeModal()"
+    >
+    </app-pokemon-details-modal>
+  
 </div>
-
-
-
-
-<!-- Modal de detalles de los pokemones -->
-
-<app-pokemon-details-modal 
-    [pokemon]="selectedPokemon"
-    [pokemonDetails]="selectedPokemonDetails"
-    [isModalOpen]="isModalOpen"
-    (closeModal)="closeModal()">
-</app-pokemon-details-modal>
 
 </div>
