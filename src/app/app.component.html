@@ -1,14 +1,2 @@
-<header class="w-full h-[8rem] bg-red-500 flex flex-row flex-wrap items-center justify-between px-8"> 
-    <div class="flex items-center justify-center h-full">
-        <div>
-            <img src="logo.png" alt="Logo" class="h-22 w-22 rounded-full border-1 border-white shadow-lg">
-        </div>
-        <h1 class="text-4xl text-white font-bold ml-1">{{title}}</h1>
-    </div>
-    <nav class="flex justify-center mt-4">
-        <a routerLink="/home" routerLinkActive="" class="text-white mx-4 hover:underline hover:cursor-pointer">Inicio</a>
-        <a routerLink="/pokemons" routerLinkActive="" class="text-white mx-4 hover:underline hover:cursor-pointer">Pokemones</a>
-        <a routerLink="/about" routerLinkActive="" class="text-white mx-4 hover:underline hover:cursor-pointer">Acerca de mi</a>
-    </nav>
-</header>
+<app-header-nav></app-header-nav>
 <router-outlet></router-outlet>

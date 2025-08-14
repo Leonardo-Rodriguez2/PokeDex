@@ -3,7 +3,6 @@
             background-color: #f7fafc;
         }
 
-        /* Animación de la tarjeta al cargar */
         @keyframes slideInUp {
             from {
                 transform: translateY(20px);
@@ -15,7 +14,6 @@
             }
         }
 
-        /* Animación para los avatares */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }

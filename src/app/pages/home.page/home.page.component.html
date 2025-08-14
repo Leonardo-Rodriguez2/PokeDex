@@ -1,4 +1,4 @@
-<div class="bg-gray-100 flex items-center justify-center w-[full] h-[100]">
+<!-- <div class="bg-gray-100 flex items-center justify-center w-[full] h-[100]">
     <div class="flex items-center justify-center mt-[1rem] w-full">
         <div class="flex items-center justify-around text-center p-12 bg-white rounded-3xl shadow-2xl w-full mx-2">
             
@@ -14,4 +14,28 @@
             <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png" alt="Charizard" class="w-[30rem] h-auto mb-6 animate-pulse">
         </div>
     </div>
-</div>
+</div> -->
+
+
+<section class="mt-5">
+	<div class="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-13 lg:flex-row lg:justify-between
+    bg-white rounded-3xl shadow-2xl animate-slideInUp
+    ">
+		<div class="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png" alt="Charizard" class="w-[30rem] h-auto mb-6 animate-pulse">
+		</div>
+		<div class="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-[20rem] xl:max-w-[40rem] lg:text-left">
+			<h1 class="text-5xl font-bold leading-none sm:text-7xl">Bienvenido a la
+				<span class="dark:text-red-600">Pokedex!</span>
+			</h1>
+			<p class="mt-6 mb-8 text-lg sm:mb-12">
+                Explora, descubre y aprende sobre tus Pokémon favoritos. ¡Prepárate para la aventura!
+
+			</p>
+			<div class="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+				<a  [routerLink]="['/pokemons']" routerLinkActive="router-link-active" rel="noopener noreferrer" class="px-8 py-3 text-lg font-semibold rounded dark:bg-red-500 dark:text-gray-50"> Empezar a explorar </a>
+				<a  [routerLink]="['/about']" routerLinkActive="router-link-active" rel="noopener noreferrer" class="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800"> Acerca de mi </a>
+			</div>
+		</div>
+	</div>
+</section>

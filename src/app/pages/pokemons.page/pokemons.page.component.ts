@@ -1,13 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { CommonModule } from '@angular/common';
 import { PokemonsListService } from '../../services/pokemons.list/pokemons.list.service';
 import { switchMap, catchError } from 'rxjs/operators';
 import { of, forkJoin } from 'rxjs';
+import { PokemonDetailsModalComponent } from '../../components/pokemon.details.modal/pokemon.details.modal.component';
+import { SearchFilterBarComponent } from '../../components/search.filter.bar/search.filter.bar.component';
 
 @Component({
   selector: 'app-pokemons.page',
   standalone: true,
-  imports: [CommonModule], // Agrega CommonModule aquí
+  imports: [CommonModule, PokemonDetailsModalComponent,
+    SearchFilterBarComponent
+  ],
   templateUrl: './pokemons.page.component.html',
   styleUrl: './pokemons.page.component.css'
 })
@@ -52,9 +56,9 @@ export class PokemonsPageComponent {
           this.pokemons = data.map((pokemon: any) => ({
             id: pokemon.id,
             name: pokemon.name,
-            type : pokemon.types[0]?.type.name || 'Unknown',
+            type: pokemon.types[0]?.type.name || 'Unknown',
             image: pokemon.sprites?.other?.['official-artwork']?.front_default || pokemon.sprites?.front_default || '',
-            speciesUrl: pokemon.species.url, // Necesario para obtener detalles de la especie
+            speciesUrl: pokemon.species.url,
             height: pokemon.height,
             weight: pokemon.weight,
           }));
@@ -76,19 +80,21 @@ export class PokemonsPageComponent {
   openModal(pokemon: any): void {
     this.selectedPokemon = pokemon;
     this.isLoading = true;
-    this.isModalOpen = true;
+    // Eliminamos esta línea para que el modal no se abra antes de tener los datos.
+    // this.isModalOpen = true; 
 
-    // Obtenemos los detalles de la especie
     this.pokemonsListService.getPokemonSpecies(pokemon.speciesUrl).subscribe({
       next: (speciesData: any) => {
         this.selectedPokemonDetails = {
           category: speciesData.genera.find((g: any) => g.language.name === 'en')?.genus || 'Unknown',
-          gender: 'Male - Female', // Placeholder, ya que la API no da esta info de forma simple
+          gender: 'Male - Female',
           habitat: speciesData.habitat?.name || 'Unknown',
           color: speciesData.color?.name || 'Unknown',
           description: speciesData.flavor_text_entries.find((entry: any) => entry.language.name === 'en')?.flavor_text || 'No description available.',
           evolutionChainUrl: speciesData.evolution_chain.url
         };
+        // Movemos la apertura del modal aquí para asegurar que los datos estén listos.
+        this.isModalOpen = true; 
         this.isLoading = false;
       },
       error: (error) => {
@@ -99,21 +105,14 @@ export class PokemonsPageComponent {
     });
   }
 
-  // Método para cerrar la modal
   closeModal(): void {
     this.isModalOpen = false;
     this.selectedPokemon = null;
     this.selectedPokemonDetails = null;
   }
-  
-  
-  // Nuevo método para cargar más Pokémon
+
   public showMorePokemons(): void {
     this.limit += 20;
     this.fetchPokemons();
   }
-
-}  
-
-
-
+}

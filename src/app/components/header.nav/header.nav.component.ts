@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-home.page',
+  selector: 'app-header-nav',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './home.page.component.html'
+  templateUrl: './header.nav.component.html'
 })
-export class HomePageComponent {
-
+export class HeaderNavComponent {
+  public title = "PokeDex"
 }
